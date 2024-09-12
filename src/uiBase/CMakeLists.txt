@@ -1,5 +1,4 @@
 set ( MODULE_SOURCES
-	uibaseobject.cc
 	uimainwin.cc
 )
 
