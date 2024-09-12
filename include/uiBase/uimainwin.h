@@ -7,13 +7,15 @@ ________________________________________________________________________
 
 -*/
 
+#include "uibasemod.h"
+
+#include "Basic/commondefs.h"
 #include <QMainWindow>
 
-class uiMainWin : public QMainWindow
+mExpClass(uiBase) uiMainWin : public QMainWindow
 {
 public:
-	uiMainWin(QWidget* parent=nullptr);
-	~uiMainWin();
+					uiMainWin();
+					~uiMainWin();
 protected:
-	void	setupUi();
 };

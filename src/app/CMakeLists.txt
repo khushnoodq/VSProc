@@ -1,3 +1,9 @@
+#________________________________________________________________________
+#
+# Author: Khushnood Qadir
+#________________________________________________________________________
+#
+
 add_executable( VSProj main.cc )
 
 target_include_directories( VSProj PRIVATE ${PROJECT_SOURCE_DIR}/include )

@@ -3,19 +3,11 @@
 #include <QStatusBar>
 #include <QToolBar>
 
-uiMainWin::uiMainWin( QWidget* parent )
-    : QMainWindow( parent ) 
+uiMainWin::uiMainWin()
+    : QMainWindow( nullptr ) 
 {
-    setupUi();
+    setWindowTitle("VSProc");
 }
 
 uiMainWin::~uiMainWin() 
-{
-    // Destructor implementation (if needed)
-}
-
-void uiMainWin::setupUi() 
-{
-    // Set up the main window
-    setWindowTitle( "VSProc" );
-}
+{}

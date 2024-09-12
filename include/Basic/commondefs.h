@@ -7,7 +7,12 @@ ________________________________________________________________________
 
 -*/
 
-#define mOD_DisableCopy(clss) \
+
+#define mExp( module )                  Export_##module
+#define mExpClass( module )             class mExp( module )
+#define mExpStruct( module )            struct mExp( module )
+
+#define m_DisableCopy(clss) \
     clss( const clss& ) = delete; \
     clss& operator=( const clss& ) = delete;
 
