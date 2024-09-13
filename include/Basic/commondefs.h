@@ -12,9 +12,14 @@ ________________________________________________________________________
 #define mExpClass( module )             class mExp( module )
 #define mExpStruct( module )            struct mExp( module )
 
+#define mGlobal( module )               mExp( module )
+
 #define m_DisableCopy(clss) \
     clss( const clss& ) = delete; \
     clss& operator=( const clss& ) = delete;
+
+#define mDefineStaticLocalObject( type, var, init ) \
+static type var init;
 
 //--- Qt class and namespace handling
 

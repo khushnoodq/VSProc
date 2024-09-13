@@ -1,3 +1,11 @@
+/*+
+________________________________________________________________________
+
+    Author: Khushnood Qadir
+________________________________________________________________________
+
+-*/
+
 #include "uiBase/uimainwin.h"
 #include <QMenuBar>
 #include <QStatusBar>
@@ -5,9 +13,7 @@
 
 uiMainWin::uiMainWin( QWidget* p )
     : QMainWindow( p ) 
-{
-    setWindowTitle("VSProc");
-}
+{}
 
 uiMainWin::~uiMainWin() 
 {}

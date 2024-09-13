@@ -1,12 +1,19 @@
+/*+
+________________________________________________________________________
+
+    Author: Khushnood Qadir
+________________________________________________________________________
+
+-*/
+
 #include <QApplication>
-#include "uiBase/uimainwin.h"
+#include "uiMain/uiapp.h"
 
 int main(int argc, char* argv[]) 
 {
     QApplication app(argc, argv);
 
-    uiMainWin mainWindow;
-    mainWindow.show();
+    AppMainWin().show();
 
     return app.exec();
 }
