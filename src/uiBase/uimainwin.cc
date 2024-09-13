@@ -3,8 +3,8 @@
 #include <QStatusBar>
 #include <QToolBar>
 
-uiMainWin::uiMainWin()
-    : QMainWindow( nullptr ) 
+uiMainWin::uiMainWin( QWidget* p )
+    : QMainWindow( p ) 
 {
     setWindowTitle("VSProc");
 }

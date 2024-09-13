@@ -12,10 +12,11 @@ ________________________________________________________________________
 #include "Basic/commondefs.h"
 #include <QMainWindow>
 
+
 mExpClass(uiBase) uiMainWin : public QMainWindow
 {
 public:
-					uiMainWin();
+					uiMainWin(QWidget* parent=nullptr);
 					~uiMainWin();
 protected:
 };
