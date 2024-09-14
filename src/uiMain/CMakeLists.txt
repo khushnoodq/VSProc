@@ -12,5 +12,5 @@ set ( MODULE_SOURCES
 add_library( uiMain SHARED ${MODULE_SOURCES} )
 
 target_include_directories( uiMain PRIVATE ${PROJECT_SOURCE_DIR}/include )
-target_link_libraries( uiMain PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets uiBase )
+target_link_libraries( uiMain PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets )
 do_export_header( uiMain )

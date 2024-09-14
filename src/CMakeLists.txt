@@ -6,5 +6,4 @@
 
 # src/CMakeLists.txt
 add_subdirectory( app )
-add_subdirectory( uiBase )
 add_subdirectory( uiMain )

@@ -11,7 +11,7 @@ ________________________________________________________________________
 
 uiMainApp& AppMainWin()
 {
-    mDefineStaticLocalObject( uiMainApp, instance, );
+    mDefineStaticLocalObject( uiMainApp, instance, )
     return instance;
 }
 
@@ -25,6 +25,4 @@ uiMainApp::uiMainApp()
 
 
 uiMainApp::~uiMainApp()
-{
-	delete menumgr_;
-}
+{}
