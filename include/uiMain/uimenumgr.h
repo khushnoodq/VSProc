@@ -28,6 +28,12 @@ protected:
 					uiMenuMgr(uiMainApp*);
 					~uiMenuMgr();
 
+	void			initMenuItems();
+	void			fillFileMenu();
+	void			fillProcMenu();
+	void			fillUtilsMenu();
+	void			fillHelpMenu();
+
 	uiMainApp&		appl_;
 
 	QMenu*			filemenu_;

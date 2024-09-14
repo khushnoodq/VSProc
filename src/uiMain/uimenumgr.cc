@@ -23,3 +23,23 @@ uiMenuMgr::uiMenuMgr( uiMainApp* app )
 
 uiMenuMgr::~uiMenuMgr()
 {}
+
+
+void uiMenuMgr::initMenuItems()
+{}
+
+
+void uiMenuMgr::fillFileMenu()
+{}
+
+
+void uiMenuMgr::fillProcMenu()
+{}
+
+
+void uiMenuMgr::fillUtilsMenu()
+{}
+
+
+void uiMenuMgr::fillHelpMenu()
+{}
