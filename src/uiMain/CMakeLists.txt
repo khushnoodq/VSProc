@@ -6,6 +6,7 @@
 
 set ( MODULE_SOURCES
 	uiapp.cc
+	uiappmgr.cc
 	uimenumgr.cc
 )
 

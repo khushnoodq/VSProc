@@ -8,6 +8,7 @@ ________________________________________________________________________
 
 #include "uiMain/uiapp.h"
 #include "uiMain/uimenumgr.h"
+#include "uiMain/uiappmgr.h"
 
 uiMainApp& AppMainWin()
 {
@@ -21,6 +22,7 @@ uiMainApp::uiMainApp()
 {
 	setWindowTitle( "VSProc" );
 	menumgr_ = new uiMenuMgr( this );
+	applmgr_ = new uiApplMgr( *this );
 }
 
 

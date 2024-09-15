@@ -7,6 +7,7 @@ ________________________________________________________________________
 -*/
 
 #include "uiMain/uimenumgr.h"
+#include "uiMain/menuids.h"
 
 #include <QMenuBar>
 
@@ -26,20 +27,29 @@ uiMenuMgr::~uiMenuMgr()
 
 
 void uiMenuMgr::initMenuItems()
-{}
+{
+	fillFileMenu();
+	fillProcMenu();
+	fillUtilsMenu();
+	fillHelpMenu();
+}
 
 
 void uiMenuMgr::fillFileMenu()
-{}
+{
+}
 
 
 void uiMenuMgr::fillProcMenu()
-{}
+{
+}
 
 
 void uiMenuMgr::fillUtilsMenu()
-{}
+{
+}
 
 
 void uiMenuMgr::fillHelpMenu()
-{}
+{
+}

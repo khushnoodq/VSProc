@@ -13,16 +13,20 @@ ________________________________________________________________________
 #include <QMainWindow>
 
 class uiMenuMgr;
+class uiApplMgr;
 
 mExpClass(uiMain) uiMainApp : public QMainWindow
 {
 public:
-					m_DisableCopy(uiMainApp)
-					uiMainApp();
-					~uiMainApp();
+							m_DisableCopy(uiMainApp)
+							uiMainApp();
+							~uiMainApp();
+
+	uiMenuMgr&				menuMgr() { return *menumgr_; }
 protected:
 
-	uiMenuMgr*		menumgr_;
+	uiMenuMgr*				menumgr_;
+	uiApplMgr*				applmgr_;
 };
 
 mGlobal(uiMain) uiMainApp& AppMainWin();
