@@ -34,3 +34,4 @@ include( ${CMAKE_SOURCE_DIR}/CMakeModules/doExportHeader.cmake )
 include_directories( ${PROJECT_SOURCE_DIR}/include/* )
 
 add_subdirectory( src )
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)

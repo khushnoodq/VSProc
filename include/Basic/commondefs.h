@@ -7,7 +7,6 @@ ________________________________________________________________________
 
 -*/
 
-
 #define mExp( module )                  Export_##module
 #define mExpClass( module )             class mExp( module )
 #define mExpStruct( module )            struct mExp( module )
@@ -19,10 +18,11 @@ ________________________________________________________________________
     clss& operator=( const clss& ) = delete;
 
 #define mDefineStaticLocalObject( type, var, init ) \
-static type var init;
+    static type var init;
+
+#define m3Dots( str )                   str + " ... ";
 
 //--- Qt class and namespace handling
-
 #ifndef QT_NAMESPACE
 # define mFDQtclass(cls) class cls;
 # define mQtclass(cls) ::cls
