@@ -27,4 +27,7 @@ uiMainApp::uiMainApp()
 
 
 uiMainApp::~uiMainApp()
-{}
+{
+	delete menumgr_;
+	delete applmgr_;
+}

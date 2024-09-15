@@ -18,6 +18,7 @@ uiMenuMgr::uiMenuMgr( uiMainApp* app )
 {
 	auto* mb = appl_.menuBar();
 	filemenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sFile()) );
+	fillFileMenu();
 	procmenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sProcessing()) );
 	utilsmenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sUtilities()) );
 	helpmenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sHelp()) );
