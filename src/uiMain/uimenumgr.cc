@@ -7,7 +7,7 @@ ________________________________________________________________________
 -*/
 
 #include "uiMain/uimenumgr.h"
-#include "uiMain/menuids.h"
+#include "uiMain/uimenuids.h"
 
 #include "Basic/commonstrs.h"
 
