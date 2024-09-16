@@ -12,8 +12,10 @@ ________________________________________________________________________
 
 #include "uiapp.h"
 
-mExpClass(uiMain) uiApplMgr
+mExpClass(uiMain) uiApplMgr : public QObject
 {
+	Q_OBJECT;
+
 public:
 						uiApplMgr(uiMainApp&);
 						~uiApplMgr();

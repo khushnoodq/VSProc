@@ -17,6 +17,8 @@ class uiApplMgr;
 
 mExpClass(uiMain) uiMainApp : public QMainWindow
 {
+	Q_OBJECT;
+
 public:
 							m_DisableCopy(uiMainApp)
 							uiMainApp();

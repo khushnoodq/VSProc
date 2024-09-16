@@ -10,13 +10,15 @@ ________________________________________________________________________
 #include "uimainmod.h"
 #include "uiapp.h"
 
+#include <QObject>
 #include <QMenu>
 #include <QToolBar>
 
-mExpClass(uiMain) uiMenuMgr
+mExpClass(uiMain) uiMenuMgr : public QObject
 {
-
+	Q_OBJECT;
 	friend class	uiMainApp;
+
 public:
 					
 	QMenu*			fileMenu() const		{ return filemenu_; }
