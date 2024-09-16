@@ -1,4 +1,4 @@
-# Velocity Seismic Profiling Software
+# Vertical Seismic Profiling Software
 
 This software is being created by Khushnood Qadir and Prajjaval Singh, with an aim to provide VSP software with state of the art workflows. The software is being currently written in C++. It is suppose to work on Windows/Linux, but it is currently being developed only for Windows.
 
