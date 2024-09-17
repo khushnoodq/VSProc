@@ -5,7 +5,7 @@
 #
 
 set ( MODULE_SOURCES
-	uicreateprojdlg.cc
+	uiselprojdlg.cc
 )
 
 set ( LINK_MODULES

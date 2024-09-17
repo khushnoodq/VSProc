@@ -21,8 +21,9 @@ uiMainApp::uiMainApp()
 	: QMainWindow( nullptr )
 {
 	setWindowTitle( "VSProc" );
+	applmgr_ = new uiApplMgr( this );
 	menumgr_ = new uiMenuMgr( this );
-	applmgr_ = new uiApplMgr( *this );
+	emit finalized();
 }
 
 
