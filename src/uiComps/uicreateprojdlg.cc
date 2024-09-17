@@ -8,7 +8,7 @@ ________________________________________________________________________
 
 #include "uiComps/uicreateprojdlg.h"
 
-uiCreateProjDlg::uiCreateProjDlg(QParent* p, const char* title)
+uiCreateProjDlg::uiCreateProjDlg(QWidget* p, const char* title)
 	: QDialog( p )
 {
 	setWindowTitle( QString(title) );
