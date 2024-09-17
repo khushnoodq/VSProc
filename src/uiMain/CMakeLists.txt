@@ -15,6 +15,7 @@ set ( LINK_MODULES
 	Qt6::Gui 
 	Qt6::Widgets
 	Basic
+	uiComps
 )
 
 file(GLOB_RECURSE HEADER_FILES "${PROJECT_SOURCE_DIR}/include/uiMain/*.h")
