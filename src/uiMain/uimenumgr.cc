@@ -38,12 +38,13 @@ void uiMenuMgr::initMenuItems()
 }
 
 #define mAddSubMenu( menunm, stdstr, parent ) \
-	auto* menunm = new QMenu( QString::fromStdString(stdstr), parent ); 
+	auto* menunm = new QMenu( QString::fromStdString(stdstr), parent ); \
+	parent->addMenu( menunm );
 
 
 void uiMenuMgr::fillFileMenu()
 {
-	mAddSubMenu( projmenu, sKeyUi::sProject(), filemenu_)
+	mAddSubMenu( projmenu, "New Project", filemenu_)
 	mAddSubMenu( openmenu, sKeyUi::sOpen(), filemenu_ )
 	mAddSubMenu( savemenu, sKeyUi::sSave(), filemenu_ )
 	mAddSubMenu( vspmenu, sKeyUi::sVSP(), filemenu_ )
