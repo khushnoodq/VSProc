@@ -26,6 +26,7 @@ namespace sKeyUi
 	mGlobal(Basic) const std::string&		sOpen();
 	mGlobal(Basic) const std::string&		sProcessing();
 	mGlobal(Basic) const std::string&		sProject();
+	mGlobal(Basic) const std::string&		sRecent();
 	mGlobal(Basic) const std::string&		sSave();
 	mGlobal(Basic) const std::string&		sUtilities();
 	mGlobal(Basic) const std::string&		sVSP();

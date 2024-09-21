@@ -14,13 +14,44 @@ ________________________________________________________________________
 #include <QLabel>
 #include <QListWidget>
 
+
+mExpClass(uiComps) uiNewProjDlg : public QFileDialog
+{
+	Q_OBJECT;
+public:
+							uiNewProjDlg( QWidget* parent=nullptr );
+							~uiNewProjDlg();
+
+	const std::filesystem::path&	getSelDir() const	{ return seldir_; }
+
+private slots:
+
+	void					done(int r) override;
+
+private:
+
+	std::filesystem::path	seldir_;
+
+};
+
+
+// To-do: A QDialog class for fetching new Project Information from user.
+
+
 mExpClass(uiComps) uiOpenProjDlg : public QFileDialog
 {
 	Q_OBJECT;
 public:
-						uiOpenProjDlg(QWidget* parent=nullptr);
-						~uiOpenProjDlg();
-protected:
+							uiOpenProjDlg( QWidget* parent=nullptr );
+							~uiOpenProjDlg();
 
-	void				accept() override;
+	const std::filesystem::path&	getSelDir() const	{ return seldir_; }
+
+private slots:
+
+	void					done(int r) override;
+
+private:
+
+	std::filesystem::path	seldir_;
 };

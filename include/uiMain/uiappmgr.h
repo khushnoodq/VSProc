@@ -28,6 +28,7 @@ public slots:
 
 	void					newProjClicked();
 	void					openProjClicked();
+	void					openRecentProj();
 
 protected:
 

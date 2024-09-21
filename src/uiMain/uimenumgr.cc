@@ -15,6 +15,7 @@ ________________________________________________________________________
 #include "Basic/commonstrs.h"
 
 #include <QMenuBar>
+#include <QWidgetAction>
 
 #define mConnectMenuWithAppMgr( menu, func ) \
 { \
@@ -50,7 +51,7 @@ void uiMenuMgr::initMenuItems()
 
 
 #define mAddSubMenu( menunm, stdstr, parent ) \
-	auto* menunm = new QMenu( QString::fromStdString(stdstr), parent ); \
+	menunm = new QMenu( QString::fromStdString(stdstr), parent ); \
 	parent->addMenu( menunm );
 
 #define mAddAction( nm, stdstr, parent ) \
@@ -60,13 +61,41 @@ void uiMenuMgr::initMenuItems()
 
 void uiMenuMgr::fillFileMenu()
 {
-	mAddAction(newmenu, sKeyUi::sNew(), filemenu_)
-	mAddAction(openmenu, sKeyUi::sOpen(), filemenu_)
-	mAddSubMenu(savemenu, sKeyUi::sSave(), filemenu_)
-	mAddSubMenu(vspmenu, sKeyUi::sVSP(), filemenu_)
+	mAddAction( newmenu, sKeyUi::sNew(), filemenu_ )
+	mAddSubMenu( openmenu_, sKeyUi::sOpen(), filemenu_ )
+	fillOpenMenu();
+	mAddAction( savemenu, sKeyUi::sSave(), filemenu_ )
+	mAddAction( vspmenu, sKeyUi::sVSP(), filemenu_ )
 
 	mConnectMenuWithAppMgr( newmenu, newProjClicked )
-	mConnectMenuWithAppMgr( openmenu, openProjClicked )
+}
+
+
+void uiMenuMgr::fillOpenMenu()
+{
+	mAddAction( openlocalmenu, "location", openmenu_ )
+
+	openmenu_->addSeparator();
+	auto* recenttxt = new QLabel( "Recent projects ...", &appl_ );
+	auto* recenttxtaction = new QWidgetAction( &appl_ );
+	recenttxtaction->setDefaultWidget( recenttxt );
+	openmenu_->addAction( recenttxtaction );
+	openmenu_->addSeparator();
+
+	//-> get from API to access recent paths. Current impl is for test.
+	const std::vector<std::filesystem::path> paths = {
+		"/path/to/dir",
+		"/path/to/dir",
+		"/path/to/dir"
+	};	
+
+	for ( const auto& path : paths )
+	{
+		mAddAction( action, path.u8string(), openmenu_ )
+		mConnectMenuWithAppMgr( action, openRecentProj )
+	}
+
+	mConnectMenuWithAppMgr( openlocalmenu, openProjClicked )
 }
 
 
