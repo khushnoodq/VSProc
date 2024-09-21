@@ -75,24 +75,22 @@ void uiMenuMgr::fillOpenMenu()
 {
 	mAddAction( openlocalmenu, "location", openmenu_ )
 
-	openmenu_->addSeparator();
-	auto* recenttxt = new QLabel( "Recent projects ...", &appl_ );
-	auto* recenttxtaction = new QWidgetAction( &appl_ );
-	recenttxtaction->setDefaultWidget( recenttxt );
-	openmenu_->addAction( recenttxtaction );
-	openmenu_->addSeparator();
-
 	//-> get from API to access recent paths. Current impl is for test.
-	const std::vector<std::filesystem::path> paths = {
-		"/path/to/dir",
-		"/path/to/dir",
-		"/path/to/dir"
-	};	
-
-	for ( const auto& path : paths )
+	const std::vector<std::filesystem::path> paths;
+	if ( !paths.empty() )
 	{
-		mAddAction( action, path.u8string(), openmenu_ )
-		mConnectMenuWithAppMgr( action, openRecentProj )
+		openmenu_->addSeparator();
+		auto* recenttxt = new QLabel( "Recent projects ...", &appl_ );
+		auto* recenttxtaction = new QWidgetAction( &appl_ );
+		recenttxtaction->setDefaultWidget( recenttxt );
+		openmenu_->addAction( recenttxtaction );
+		openmenu_->addSeparator();
+
+		for ( const auto& path : paths )
+		{
+			mAddAction( action, path.u8string(), openmenu_ )
+			mConnectMenuWithAppMgr( action, openRecentProj )
+		}
 	}
 
 	mConnectMenuWithAppMgr( openlocalmenu, openProjClicked )
