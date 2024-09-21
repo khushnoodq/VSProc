@@ -5,7 +5,7 @@
 #
 
 set ( MODULE_SOURCES
-	uiopenprojdlg.cc
+	uiprojectdlgs.cc
 )
 
 set ( LINK_MODULES

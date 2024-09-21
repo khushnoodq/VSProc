@@ -21,6 +21,7 @@ namespace sKeyUi
 	mGlobal(Basic) const std::string&		sFile();
 	mGlobal(Basic) const std::string&		sHelp();
 	mGlobal(Basic) const std::string&		sImport();
+	mGlobal(Basic) const std::string&		sNew();
 	mGlobal(Basic) const std::string&		sManage();
 	mGlobal(Basic) const std::string&		sOpen();
 	mGlobal(Basic) const std::string&		sProcessing();

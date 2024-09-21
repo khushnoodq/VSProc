@@ -10,11 +10,11 @@ ________________________________________________________________________
 #include "uicompsmod.h"
 #include "Basic/commondefs.h"
 
-#include <QDialog>
+#include <QFileDialog>
 #include <QLabel>
 #include <QListWidget>
 
-mExpClass(uiComps) uiOpenProjDlg : public QDialog
+mExpClass(uiComps) uiOpenProjDlg : public QFileDialog
 {
 	Q_OBJECT;
 public:
@@ -22,7 +22,5 @@ public:
 						~uiOpenProjDlg();
 protected:
 
-	QListWidget*		recentlb_					= nullptr;
-	QPushButton*		browsepb_						= nullptr;
-	QLineEdit*			pathfld_					= nullptr;
+	void				accept() override;
 };

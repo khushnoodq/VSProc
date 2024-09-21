@@ -16,6 +16,13 @@ ________________________________________________________________________
 
 #include <QMenuBar>
 
+#define mConnectMenuWithAppMgr( menu, func ) \
+{ \
+	connect( menu, &QAction::triggered, \
+			 &appl_.applMgr(), &uiApplMgr::func ); \
+}
+
+
 uiMenuMgr::uiMenuMgr( uiMainApp* app )
 	: QObject()
 	, appl_( *app )
@@ -53,12 +60,13 @@ void uiMenuMgr::initMenuItems()
 
 void uiMenuMgr::fillFileMenu()
 {
+	mAddAction(newmenu, sKeyUi::sNew(), filemenu_)
 	mAddAction(openmenu, sKeyUi::sOpen(), filemenu_)
 	mAddSubMenu(savemenu, sKeyUi::sSave(), filemenu_)
 	mAddSubMenu(vspmenu, sKeyUi::sVSP(), filemenu_)
 
-	connect( openmenu, &QAction::triggered, 
-			 &appl_.applMgr(), &uiApplMgr::selProjClickedCB );
+	mConnectMenuWithAppMgr( newmenu, newProjClicked )
+	mConnectMenuWithAppMgr( openmenu, openProjClicked )
 }
 
 

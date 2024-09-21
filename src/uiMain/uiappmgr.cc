@@ -8,8 +8,6 @@ ________________________________________________________________________
 
 #include "uiMain/uiappmgr.h"
 
-#include "uiComps/uiopenprojdlg.h"
-
 uiApplMgr::uiApplMgr( uiMainApp* appl )
 	: QObject()
 	, appl_( *appl )
@@ -20,7 +18,11 @@ uiApplMgr::~uiApplMgr()
 {}
 
 
-void uiApplMgr::selProjClickedCB()
+void uiApplMgr::newProjClicked()
+{}
+
+
+void uiApplMgr::openProjClicked()
 {
 	if ( !uiopenprojdlg_ )
 		uiopenprojdlg_ = new uiOpenProjDlg( &appl_ );

@@ -10,7 +10,7 @@ ________________________________________________________________________
 #include "uimainmod.h"
 #include "Basic/commondefs.h"
 
-#include "uiComps/uiopenprojdlg.h"
+#include "uiComps/uiprojectdlgs.h"
 
 #include "uiapp.h"
 
@@ -25,7 +25,9 @@ public:
 							~uiApplMgr();
 						
 public slots:
-	void					selProjClickedCB();
+
+	void					newProjClicked();
+	void					openProjClicked();
 
 protected:
 
