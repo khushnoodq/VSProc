@@ -42,7 +42,7 @@ bool dbManager::isOpen() const
 
 dbManager::Credentials dbManager::readCredentialsFromBinaryFile(const std::string& filename) const
 {
-    std::ifstream file(filename, std::ios::binary | std::ios::in);
+    ifstream file(filename, std::ios::binary | std::ios::in);
     if (!file)
     {
         cerr << "Error: Could not open file!" << endl;
