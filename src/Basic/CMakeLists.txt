@@ -6,10 +6,12 @@
 
 set ( MODULE_SOURCES
 	commonstrs.cc
+	dBManager.cc
 )
 
 set ( LINK_MODULES
 	Qt6::Core
+	Qt6::Sql
 )
 
 file(GLOB_RECURSE HEADER_FILES "${PROJECT_SOURCE_DIR}/include/Basic/*.h")
