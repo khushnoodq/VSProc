@@ -32,14 +32,16 @@ protected:
 
 	void			initMenuItems();
 	void			fillFileMenu();
+	void			fillOpenMenu();
 	void			fillProcMenu();
 	void			fillUtilsMenu();
 	void			fillHelpMenu();
 
 	uiMainApp&		appl_;
 
-	QMenu*			filemenu_;
-	QMenu*			procmenu_;
-	QMenu*			utilsmenu_;
-	QMenu*			helpmenu_;
+	QMenu*			filemenu_								= nullptr;
+	QMenu*			openmenu_								= nullptr;
+	QMenu*			procmenu_								= nullptr;
+	QMenu*			utilsmenu_								= nullptr;
+	QMenu*			helpmenu_								= nullptr;
 };

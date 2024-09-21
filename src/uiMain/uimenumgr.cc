@@ -7,21 +7,33 @@ ________________________________________________________________________
 -*/
 
 #include "uiMain/uimenumgr.h"
+
+#include "uiMain/uiappmgr.h"
 #include "uiMain/uimenuids.h"
+
 
 #include "Basic/commonstrs.h"
 
 #include <QMenuBar>
+#include <QWidgetAction>
+
+#define mConnectMenuWithAppMgr( menu, func ) \
+{ \
+	connect( menu, &QAction::triggered, \
+			 &appl_.applMgr(), &uiApplMgr::func ); \
+}
+
 
 uiMenuMgr::uiMenuMgr( uiMainApp* app )
-	: appl_( *app )
+	: QObject()
+	, appl_( *app )
 {
 	auto* mb = appl_.menuBar();
 	filemenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sFile()) );
-	fillFileMenu();
 	procmenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sProcessing()) );
 	utilsmenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sUtilities()) );
 	helpmenu_ = mb->addMenu( QString::fromStdString(sKeyUi::sHelp()) );
+	connect( &appl_, &uiMainApp::finalized, this, &uiMenuMgr::initMenuItems );
 }
 
 
@@ -37,17 +49,51 @@ void uiMenuMgr::initMenuItems()
 	fillHelpMenu();
 }
 
+
 #define mAddSubMenu( menunm, stdstr, parent ) \
-	auto* menunm = new QMenu( QString::fromStdString(stdstr), parent ); \
+	menunm = new QMenu( QString::fromStdString(stdstr), parent ); \
 	parent->addMenu( menunm );
+
+#define mAddAction( nm, stdstr, parent ) \
+	auto* nm = new QAction( QString::fromStdString(stdstr), parent ); \
+	parent->addAction( nm );
 
 
 void uiMenuMgr::fillFileMenu()
 {
-	mAddSubMenu( projmenu, "New Project", filemenu_)
-	mAddSubMenu( openmenu, sKeyUi::sOpen(), filemenu_ )
-	mAddSubMenu( savemenu, sKeyUi::sSave(), filemenu_ )
-	mAddSubMenu( vspmenu, sKeyUi::sVSP(), filemenu_ )
+	mAddAction( newmenu, sKeyUi::sNew(), filemenu_ )
+	mAddSubMenu( openmenu_, sKeyUi::sOpen(), filemenu_ )
+	fillOpenMenu();
+	mAddAction( savemenu, sKeyUi::sSave(), filemenu_ )
+	mAddAction( vspmenu, sKeyUi::sVSP(), filemenu_ )
+
+	mConnectMenuWithAppMgr( newmenu, newProjClicked )
+}
+
+
+void uiMenuMgr::fillOpenMenu()
+{
+	mAddAction( openlocalmenu, "location", openmenu_ )
+
+	//-> get from API to access recent paths. Current impl is for test.
+	const std::vector<std::filesystem::path> paths;
+	if ( !paths.empty() )
+	{
+		openmenu_->addSeparator();
+		auto* recenttxt = new QLabel( "Recent projects ...", &appl_ );
+		auto* recenttxtaction = new QWidgetAction( &appl_ );
+		recenttxtaction->setDefaultWidget( recenttxt );
+		openmenu_->addAction( recenttxtaction );
+		openmenu_->addSeparator();
+
+		for ( const auto& path : paths )
+		{
+			mAddAction( action, path.u8string(), openmenu_ )
+			mConnectMenuWithAppMgr( action, openRecentProj )
+		}
+	}
+
+	mConnectMenuWithAppMgr( openlocalmenu, openProjClicked )
 }
 
 

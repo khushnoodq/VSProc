@@ -24,7 +24,12 @@ public:
 							uiMainApp();
 							~uiMainApp();
 
-	uiMenuMgr&				menuMgr() { return *menumgr_; }
+	uiMenuMgr&				menuMgr()			{ return *menumgr_; }
+	uiApplMgr&				applMgr()			{ return *applmgr_; }
+
+signals:
+	void					finalized();
+
 protected:
 
 	uiMenuMgr*				menumgr_;
