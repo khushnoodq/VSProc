@@ -7,6 +7,9 @@
 set ( MODULE_SOURCES
 	commonstrs.cc
 	dBManager.cc
+	projectInfo.cc
+	seisDBManager.cc
+	wellDBManager.cc	
 )
 
 set ( LINK_MODULES

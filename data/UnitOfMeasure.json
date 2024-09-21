@@ -1,0 +1,12 @@
+{
+    "length": 
+    {
+      "units": 
+      {
+        "meter": { "symbol": "m", "conversion": 1 },
+        "kilometer": { "symbol": "km", "conversion": 1000.0 },
+        "centimeter": { "symbol": "cm", "conversion": 0.01 },
+        "inch": { "symbol": "in", "conversion": 0.0254 }
+      }
+    }
+}

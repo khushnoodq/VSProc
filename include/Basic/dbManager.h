@@ -18,17 +18,28 @@ ________________________________________________________________________
 mExpClass(Basic) dbManager : QSqlDatabase
 {
 public:
-    static std::shared_ptr<dbManager>	getDBManagerInstance();
-    bool				isOK() const;
-    bool				isOpen() const;
-    bool				createDB(const std::string&);
-private:
+    virtual std::shared_ptr<dbManager>	getInstance() = 0;
+    virtual bool			isOK() const;
+    virtual bool			isOpen() const;
+
+protected:
 					m_DisableCopy(dbManager)
 					dbManager();
 					~dbManager();
 
-    static std::shared_ptr<dbManager>	dbmanager_;
-    static std::mutex			mutex_;
+    std::shared_ptr<dbManager>		dbmanager_;
+    std::mutex				mutex_;
+
+    struct Credentials
+    {
+	std::string username;
+	std::string password;
+    };
+
+    Credentials				getCredentials() const;
 
     QSqlDatabase			db_;
+
+private:
+    Credentials readCredentialsFromBinaryFile(const std::string&) const;
 };

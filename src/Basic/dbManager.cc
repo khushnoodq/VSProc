@@ -8,22 +8,15 @@ ________________________________________________________________________
 
 #include "Basic/dbManager.h"
 
+#include <iostream>
+#include <fstream>
+#include <string>
+
+#include <QCoreApplication>
+#include <QFileInfo>
+#include <QString>
+
 using namespace std;
-
-shared_ptr<dbManager> dbManager::getDBManagerInstance()
-{
-    if (!dbmanager_)
-    {
-	lock_guard<mutex> lock(mutex_);
-	if (!dbmanager_)
-	{
-	    dbmanager_ = make_shared<dbManager>(new dbManager());
-	}
-    }
-
-    return dbmanager_;
-}
-
 
 dbManager::dbManager()
     : QSqlDatabase()
@@ -47,4 +40,38 @@ bool dbManager::isOpen() const
 }
 
 
+dbManager::Credentials dbManager::readCredentialsFromBinaryFile(const std::string& filename) const
+{
+    std::ifstream file(filename, std::ios::binary | std::ios::in);
+    if (!file)
+    {
+        cerr << "Error: Could not open file!" << endl;
+        return;
+    }
 
+    dbManager::Credentials creds;
+
+    size_t usernameLength, passwordLength;
+    file.read(reinterpret_cast<char*>(&usernameLength), sizeof(usernameLength));
+    file.read(reinterpret_cast<char*>(&passwordLength), sizeof(passwordLength));
+
+    // Resizing the strings
+    creds.username.resize(usernameLength);
+    creds.password.resize(passwordLength);
+
+    // Read the username and password
+    file.read(&creds.username[0], usernameLength);
+    file.read(&creds.password[0], passwordLength);
+
+    file.close();
+
+    return creds;
+}
+
+dbManager::Credentials dbManager::getCredentials() const
+{
+    QString appPath = QCoreApplication::applicationDirPath();
+    QFileInfo appInfo(appPath);
+    //Need to go to data/credential.bin location
+    return readCredentialsFromBinaryFile(appInfo.dir().absolutePath().toStdString());
+}
