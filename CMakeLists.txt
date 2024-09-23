@@ -28,7 +28,7 @@ if ( NOT CMAKE_PREFIX_PATH )
     endif()
 endif()
 
-find_package( Qt6 COMPONENTS Core Gui Widgets REQUIRED )
+find_package( Qt6 COMPONENTS Core Gui Widgets Sql REQUIRED )
 
 include( ${CMAKE_SOURCE_DIR}/CMakeModules/doExportHeader.cmake )
 include_directories( ${PROJECT_SOURCE_DIR}/include/* )
