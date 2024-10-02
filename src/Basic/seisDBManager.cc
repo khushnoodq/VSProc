@@ -10,18 +10,11 @@ ________________________________________________________________________
 
 using namespace std;
 
+
 shared_ptr<dbManager> SeisDBManager::getInstance()
 {
-    if (!dbmanager_)
-    {
-	lock_guard<mutex> lock(mutex_);
-	if (!dbmanager_)
-	{
-	    dbmanager_ = make_shared<dbManager>(new SeisDBManager());
-	}
-    }
-
-    return dbmanager_;
+    static shared_ptr<SeisDBManager> dbmanager = make_shared<SeisDBManager>();
+    return dbmanager;
 }
 
 
@@ -32,12 +25,28 @@ SeisDBManager::SeisDBManager()
     db_.setHostName("VSProcSeis");
     db_.setDatabaseName("SeisDB");
     const auto creds = getCredentials();
-    db_.setUserName(QString::fromStdString(creds.username));
-    db_.setPassword(QString::fromStdString(creds.password));
+    if (creds.has_value())
+    {
+	const auto cred = creds.value();
+	db_.setUserName(QString::fromStdString(cred.username));
+	db_.setPassword(QString::fromStdString(cred.password));
+    }
 
 }
 
 
 SeisDBManager::~SeisDBManager()
 {
+}
+
+
+std::string SeisDBManager::typeName()
+{
+    return "SEISDB";
+}
+
+
+std::string SeisDBManager::getType() const
+{
+    return typeName();
 }

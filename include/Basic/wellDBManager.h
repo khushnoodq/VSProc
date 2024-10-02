@@ -9,13 +9,18 @@ ________________________________________________________________________
 
 #include "dbManager.h"
 
-mExpClass(Basic) WellDBManager : dbManager
+mExpClass(Basic) WellDBManager : public dbManager
 {
 public:
-    std::shared_ptr<dbManager>	getInstance() override;
-    bool			isOK() const override;
-    bool			isOpen() const override;
+				    WellDBManager();
+				    ~WellDBManager();
+    static std::string		    typeName();
+    std::string			    getType() const override;
+    
+    mRegisterDBMan(WellDBManager);
 protected:
-				WellDBManager();
-				~WellDBManager();
+				
+				
+
+    static std::shared_ptr<dbManager>	    getInstance();
 };

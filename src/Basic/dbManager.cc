@@ -13,10 +13,30 @@ ________________________________________________________________________
 #include <string>
 
 #include <QCoreApplication>
+#include <QDir>
 #include <QFileInfo>
 #include <QString>
 
 using namespace std;
+static unordered_map<std::string, std::function<std::shared_ptr<dbManager>()>> registry;
+
+void dbManager::registerClass(const std::string& type, std::function<std::shared_ptr<dbManager>()> creator)
+{
+    registry[type] = creator;
+}
+
+
+shared_ptr<dbManager> dbManager::createInstance(const std::string& type)
+{
+    auto it = registry.find(type);
+    if (it != registry.end())
+    {
+        it->second();
+    }
+
+    return nullptr;
+}
+
 
 dbManager::dbManager()
     : QSqlDatabase()
@@ -40,13 +60,13 @@ bool dbManager::isOpen() const
 }
 
 
-dbManager::Credentials dbManager::readCredentialsFromBinaryFile(const std::string& filename) const
+optional<dbManager::Credentials> dbManager::readCredentialsFromBinaryFile(const std::string& filename) const
 {
     ifstream file(filename, std::ios::binary | std::ios::in);
     if (!file)
     {
         cerr << "Error: Could not open file!" << endl;
-        return;
+        return nullopt;
     }
 
     dbManager::Credentials creds;
@@ -68,7 +88,7 @@ dbManager::Credentials dbManager::readCredentialsFromBinaryFile(const std::strin
     return creds;
 }
 
-dbManager::Credentials dbManager::getCredentials() const
+optional<dbManager::Credentials> dbManager::getCredentials() const
 {
     QString appPath = QCoreApplication::applicationDirPath();
     QFileInfo appInfo(appPath);

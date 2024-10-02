@@ -9,13 +9,19 @@ ________________________________________________________________________
 
 #include "dbManager.h"
 
-mExpClass(Basic) SeisDBManager : dbManager
+
+mExpClass(Basic) SeisDBManager : public dbManager
 {
 public:
-    std::shared_ptr<dbManager>	getInstance() override;
-    bool			isOK() const override;
-    bool			isOpen() const override;
+				    SeisDBManager();
+				    ~SeisDBManager();
+    static std::string		    typeName();
+    std::string			    getType() const override;
+
+    mRegisterDBMan(SeisDBManager);
 protected:
-				SeisDBManager();
-				~SeisDBManager();
+					    
+					   
+
+    static std::shared_ptr<dbManager>	    getInstance();
 };
